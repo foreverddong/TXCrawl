@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TXCrawl", "TXCrawl\TXCrawl.csproj", "{B54CDB7D-AFE8-4CAA-8A69-BD61F222F99C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B54CDB7D-AFE8-4CAA-8A69-BD61F222F99C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B54CDB7D-AFE8-4CAA-8A69-BD61F222F99C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B54CDB7D-AFE8-4CAA-8A69-BD61F222F99C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B54CDB7D-AFE8-4CAA-8A69-BD61F222F99C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48F656FC-E513-492B-97BA-FE66FB2AC707}
+	EndGlobalSection
+EndGlobal
