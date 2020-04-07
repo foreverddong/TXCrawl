@@ -87,6 +87,11 @@ namespace TXCrawl
                 this.ticketsToday.Add(ticket);
             }
         }
+
+        public override string ToString()
+        {
+            return $"{this.date.ToShortDateString()} {this.source}->{this.destination}";
+        }
     }
 
 
@@ -99,6 +104,11 @@ namespace TXCrawl
         public string source;
         public string destination;
         public int price;
+
+        public override string ToString()
+        {
+            return $"{this.flightNum} {this.departure.ToShortDateString()} {this.departure.ToShortTimeString()} {this.source}->{this.destination}";
+        }
     }
 
     public enum Cabin
