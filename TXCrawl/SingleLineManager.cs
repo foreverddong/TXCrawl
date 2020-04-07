@@ -9,13 +9,17 @@ using OpenQA.Selenium.Support.UI;
 
 namespace TXCrawl
 {
+    public delegate void _LogData(string data);
     public class SingleLineManager
     {
+       
+        public event _LogData logData = null;
         public string source;
         public string destination;
         public DateTime date;
         public List<DirectTicket> ticketsToday = new List<DirectTicket>();
         public Cabin cabin;
+        public bool headless = true;
 
         public string GenerateURL()
         {
@@ -33,7 +37,7 @@ namespace TXCrawl
         public void QueryTickets(string url)
         {
             ChromeOptions option = new ChromeOptions();
-            //option.AddArguments("--headless");
+            if(headless) option.AddArguments("--headless");
             //ChromeDriver driver = new ChromeDriver(option);
             ChromeDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl(this.GenerateURL());
@@ -45,11 +49,12 @@ namespace TXCrawl
             var validNode = doc.DocumentNode.SelectSingleNode(@"//input[contains(@name, 'direct')]");
             var valid = validNode.Attributes.Contains("checked");
             if (!valid) {
-                Console.WriteLine("No direct flights");
+                logData?.Invoke($"No direct flights found for {this.source}->{this.destination} on {this.date.ToShortDateString()}");
+                driver.Quit();
                 return;
-            } 
-                
+            }
             var ticketNodes = doc.DocumentNode.SelectNodes(@"//div[contains(@class, 'FlightsTicket_container__3yvwg')]");
+            logData?.Invoke($"Direct flight(s) found for {this.source}->{this.destination} on {this.date.ToShortDateString()}");
             foreach (HtmlNode node in ticketNodes)
             {
                 var priceNode = node.SelectSingleNode(@".//div[contains(@class,'Price_mainPriceContainer__1dqsw')]").ChildNodes[0];
@@ -73,8 +78,10 @@ namespace TXCrawl
                     flightNum = numNode.InnerText,
                     source = this.source,
                     destination = this.destination,
-                    price = int.Parse(priceNode.InnerText.Replace("¥", "").Replace(",", ""))
+                    price = int.Parse(priceNode.InnerText.Replace("¥", "").Replace(",", "")),
+                    targetLink = detailLink
                 };
+                logData?.Invoke($"Ticket {ticket.carrier} from {ticket.source} to {ticket.destination} carrier {ticket.carrier} found.");
                 int hourDepart = int.Parse(timeNodeList[1].InnerText.Split(':')[0]);
                 int minuteDepart = int.Parse(timeNodeList[1].InnerText.Split(':')[1]);
                 int hourArrival = int.Parse(timeNodeList[3].InnerText.Split(':')[0]);
@@ -85,7 +92,9 @@ namespace TXCrawl
                 ticket.departure = DepartDT; ticket.arrival = ArriveDT;
                 Console.WriteLine(detailLink);
                 this.ticketsToday.Add(ticket);
+                detailDriver.Quit();
             }
+            driver.Quit();
         }
 
         public override string ToString()
@@ -104,6 +113,7 @@ namespace TXCrawl
         public string source;
         public string destination;
         public int price;
+        public string targetLink;
 
         public override string ToString()
         {

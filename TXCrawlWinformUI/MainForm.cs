@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TXCrawl;
+using System.Threading;
 
 namespace TXCrawlWinformUI
 {
@@ -64,15 +65,34 @@ namespace TXCrawlWinformUI
             qf.Show();
         }
 
-        public List<DirectTicket> GetTicketFromQuery(SingleLineManager query)
+        public void GetTicketFromQuery(object qr)
         {
+            var query = (SingleLineManager)qr;
+            LogHelper.Log(LogType.NOTICE, $"Running query for {query}...");
             query.QueryTickets(query.GenerateURL());
-            return new List<DirectTicket>(query.ticketsToday);
+            var tickets = new List<DirectTicket>(query.ticketsToday);
+            query.ticketsToday.Clear();
+            LogHelper.Log(LogType.NOTICE, $"Found {tickets.Count} direct-flight tickets.");
+            foreach (DirectTicket ti in tickets)
+            {
+                this.foundTicketBox.Invoke((MethodInvoker) delegate { this.foundTicketBox.Items.Add(ti);});
+            }
+            
         }
 
         private void execOnceButton_Click(object sender, EventArgs e)
         {
+            LogHelper.Log(LogType.NOTICE, $"Started Executing {this.queryBox.Items.Count} queries...");
+            foreach (SingleLineManager sm in this.queryBox.Items)
+            {
+                Thread bgticket = new Thread(this.GetTicketFromQuery);
+                bgticket.Start(sm);
+            }
+        }
 
+        private void foundTicketBox_DoubleClick(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start((this.foundTicketBox.SelectedItem as DirectTicket).targetLink);
         }
     }
 

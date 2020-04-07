@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TXCrawl;
 
 namespace TXCrawlWinformUI
@@ -15,7 +16,7 @@ namespace TXCrawlWinformUI
         public static void Log(LogType type, string data)
         {
             string logstr = $"[{type.ToString()}]  " + DateTime.Now.ToString() + "  " + data + "\r\n";
-            logForm.logTextBox.Text = logForm.logTextBox.Text + logstr;
+            logForm.logTextBox.Invoke((MethodInvoker)delegate {logForm.logTextBox.Text = logForm.logTextBox.Text + logstr; });
             w.WriteLine(logstr);
         }
     }

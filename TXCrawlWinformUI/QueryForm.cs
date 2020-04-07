@@ -55,8 +55,11 @@ namespace TXCrawlWinformUI
                 source = this.departingTextbox.Text,
                 destination = this.arrivalTextBox.Text,
                 date = this.departDatePicker.Value,
-                cabin = (this.economyButton.Checked) ? Cabin.ECONOMY : Cabin.BUSINESS
+                cabin = (this.economyButton.Checked) ? Cabin.ECONOMY : Cabin.BUSINESS,
+                //Delete headless = false in actual environment, it's intended for debugging only
+                headless = false
             };
+            newQr.logData += (string data) => { LogHelper.Log(LogType.NOTICE, data); };
             addticket(newQr);
             this.Close();
         }

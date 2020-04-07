@@ -95,15 +95,16 @@
             this.foundTicketBox.Name = "foundTicketBox";
             this.foundTicketBox.Size = new System.Drawing.Size(493, 514);
             this.foundTicketBox.TabIndex = 2;
+            this.foundTicketBox.DoubleClick += new System.EventHandler(this.foundTicketBox_DoubleClick);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(978, 13);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 15);
+            this.label3.Size = new System.Drawing.Size(103, 15);
             this.label3.TabIndex = 0;
-            this.label3.Text = "FoundTicket";
+            this.label3.Text = "Found Ticket";
             // 
             // newQueryButton
             // 
