@@ -47,6 +47,7 @@
             this.queryLoadButton = new System.Windows.Forms.Button();
             this.ticketSaveButton = new System.Windows.Forms.Button();
             this.ticketLoadButton = new System.Windows.Forms.Button();
+            this.queryProgressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.intervalPicker)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +66,7 @@
             this.logTextBox.Multiline = true;
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ReadOnly = true;
+            this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.logTextBox.Size = new System.Drawing.Size(716, 518);
             this.logTextBox.TabIndex = 1;
             // 
@@ -134,6 +136,7 @@
             this.removeTicketButton.TabIndex = 3;
             this.removeTicketButton.Text = "-";
             this.removeTicketButton.UseVisualStyleBackColor = true;
+            this.removeTicketButton.Click += new System.EventHandler(this.removeTicketButton_Click);
             // 
             // logClearButton
             // 
@@ -163,6 +166,7 @@
             this.execRepeatButton.TabIndex = 6;
             this.execRepeatButton.Text = "Execute Repeat";
             this.execRepeatButton.UseVisualStyleBackColor = true;
+            this.execRepeatButton.Click += new System.EventHandler(this.execRepeatButton_Click);
             // 
             // intervalPicker
             // 
@@ -170,6 +174,11 @@
             this.intervalPicker.Name = "intervalPicker";
             this.intervalPicker.Size = new System.Drawing.Size(72, 25);
             this.intervalPicker.TabIndex = 7;
+            this.intervalPicker.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // label4
             // 
@@ -189,6 +198,7 @@
             this.stopButton.TabIndex = 6;
             this.stopButton.Text = "STOP";
             this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
             // querySaveButton
             // 
@@ -199,6 +209,7 @@
             this.querySaveButton.TabIndex = 6;
             this.querySaveButton.Text = "Save Queries";
             this.querySaveButton.UseVisualStyleBackColor = true;
+            this.querySaveButton.Click += new System.EventHandler(this.querySaveButton_Click);
             // 
             // queryLoadButton
             // 
@@ -209,6 +220,7 @@
             this.queryLoadButton.TabIndex = 6;
             this.queryLoadButton.Text = "Load Queries";
             this.queryLoadButton.UseVisualStyleBackColor = true;
+            this.queryLoadButton.Click += new System.EventHandler(this.queryLoadButton_Click);
             // 
             // ticketSaveButton
             // 
@@ -219,6 +231,7 @@
             this.ticketSaveButton.TabIndex = 6;
             this.ticketSaveButton.Text = "Save Tickets";
             this.ticketSaveButton.UseVisualStyleBackColor = true;
+            this.ticketSaveButton.Click += new System.EventHandler(this.ticketSaveButton_Click);
             // 
             // ticketLoadButton
             // 
@@ -229,12 +242,23 @@
             this.ticketLoadButton.TabIndex = 6;
             this.ticketLoadButton.Text = "Load Tickets";
             this.ticketLoadButton.UseVisualStyleBackColor = true;
+            this.ticketLoadButton.Click += new System.EventHandler(this.ticketLoadButton_Click);
+            // 
+            // queryProgressBar
+            // 
+            this.queryProgressBar.Location = new System.Drawing.Point(156, 566);
+            this.queryProgressBar.Maximum = 10010;
+            this.queryProgressBar.Name = "queryProgressBar";
+            this.queryProgressBar.Size = new System.Drawing.Size(576, 36);
+            this.queryProgressBar.Step = 1;
+            this.queryProgressBar.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1488, 684);
+            this.Controls.Add(this.queryProgressBar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.intervalPicker);
             this.Controls.Add(this.ticketSaveButton);
@@ -284,6 +308,7 @@
         private System.Windows.Forms.Button queryLoadButton;
         private System.Windows.Forms.Button ticketSaveButton;
         private System.Windows.Forms.Button ticketLoadButton;
+        private System.Windows.Forms.ProgressBar queryProgressBar;
     }
 }
 

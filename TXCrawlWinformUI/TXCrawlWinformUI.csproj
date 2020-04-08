@@ -77,6 +77,12 @@
     <Compile Include="QueryForm.Designer.cs">
       <DependentUpon>QueryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewTicketForm.Designer.cs">
+      <DependentUpon>ViewTicketForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,6 +97,9 @@
     </Compile>
     <EmbeddedResource Include="QueryForm.resx">
       <DependentUpon>QueryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewTicketForm.resx">
+      <DependentUpon>ViewTicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

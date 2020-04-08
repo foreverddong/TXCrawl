@@ -93,6 +93,7 @@
             // economyButton
             // 
             this.economyButton.AutoSize = true;
+            this.economyButton.Checked = true;
             this.economyButton.Location = new System.Drawing.Point(6, 24);
             this.economyButton.Name = "economyButton";
             this.economyButton.Size = new System.Drawing.Size(84, 19);
@@ -108,7 +109,6 @@
             this.businessButton.Name = "businessButton";
             this.businessButton.Size = new System.Drawing.Size(92, 19);
             this.businessButton.TabIndex = 3;
-            this.businessButton.TabStop = true;
             this.businessButton.Text = "Business";
             this.businessButton.UseVisualStyleBackColor = true;
             // 

@@ -16,8 +16,10 @@ namespace TXCrawlWinformUI
         public Action<SingleLineManager> addticket = null;
         public SingleLineManager query = null;
         public bool viewing = false;
-        public QueryForm()
+        public MainForm mainf = null;
+        public QueryForm(MainForm pr)
         {
+            this.mainf = pr;
             InitializeComponent();
         }
 
@@ -57,9 +59,10 @@ namespace TXCrawlWinformUI
                 date = this.departDatePicker.Value,
                 cabin = (this.economyButton.Checked) ? Cabin.ECONOMY : Cabin.BUSINESS,
                 //Delete headless = false in actual environment, it's intended for debugging only
-                headless = false
+                headless = true
             };
             newQr.logData += (string data) => { LogHelper.Log(LogType.NOTICE, data); };
+            newQr.Increment += ((MainForm)this.mainf).IncSubProgress;
             addticket(newQr);
             this.Close();
         }
