@@ -11,6 +11,6 @@ safe travel guys.
 
 
 ## check Program.cs for example usage. (it's so easy to use kids can do this)
-
+## also a video tutorial on youtube: https://youtu.be/pv2NwCMCTP8
 
 # GNU GPL License
