@@ -47,6 +47,7 @@ namespace TXCrawl
             var driverService = ChromeDriverService.CreateDefaultService();
             driverService.HideCommandPromptWindow = true;
             ChromeOptions option = new ChromeOptions();
+            option.AddArguments("--no-sandbox");
             if(headless) option.AddArguments("--window-position=-10000,0");
             ChromeDriver driver = new ChromeDriver(driverService,option);
             //driver.Manage().Window.Position = new System.Drawing.Point(-10000, 0);
